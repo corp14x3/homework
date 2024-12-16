@@ -1,14 +1,15 @@
-from sympy import symbols, Eq, solve, factorial
+from sympy import symbols, Eq, solve
 
 # n değişkenini tanımla
 n = symbols('n', positive=True, integer=True)
 
-# Kombinasyon ve permütasyon formüllerini kullanarak eşitliği yaz
-# C(n, 2) + P(n, 3) = 7 * C(n, 3)
-equation = Eq(factorial(n) / (factorial(2) * factorial(n - 2)) + factorial(n) / factorial(n - 3), 
-              7 * factorial(n) / (factorial(3) * factorial(n - 3)))
+# Kombinasyon ve permütasyon ifadelerini sadeleştir
+C_n2 = n * (n - 1) / 2
+P_n3 = n * (n - 1) * (n - 2)
+C_n3 = n * (n - 1) * (n - 2) / 6
 
-# Eşitliği çöz
+# Eşitliği kur ve çöz
+equation = Eq(C_n2 + P_n3, 7 * C_n3)
 solution = solve(equation, n)
 solution = [s for s in solution if s.is_real and s > 0]  # Geçerli çözümü filtrele
 
