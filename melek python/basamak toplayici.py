@@ -1,1 +1,0 @@
-sayi_girin= 
